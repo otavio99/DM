@@ -17,7 +17,8 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson; 
 import java.lang.reflect.Type; 
 import java.util.ArrayList;
-import com.google.gson.reflect.TypeToken;  
+import com.google.gson.reflect.TypeToken; 
+import android.support.v7.app.AlertDialog;
 
 public class AddEdit extends AppCompatActivity {		
 		private final String PREFS_NAME= "nota";
@@ -55,34 +56,48 @@ public class AddEdit extends AppCompatActivity {
 				Button buttonSalvar = (Button) findViewById(R.id.salvar);
 				buttonSalvar.setOnClickListener(new View.OnClickListener() {
 					public void onClick(View v) {
-						String title= titleText.getText().toString();
-						String text= textArea.getText().toString();
-						
-						ArrayList<String> titles= new ArrayList<String>();
-						ArrayList<String> content= new ArrayList<String>();
-						
-						titles= getArrayList(KEY1);
-						content= getArrayList(KEY2);
-						
-						titles.add(title);
-						content.add(text);
-						
-						saveArrayList(titles, KEY1);
-						saveArrayList(content, KEY2);
-						
-						Intent intent = new Intent(AddEdit.this, MainActivity.class);
-						startActivity(intent);
+						try{
+							String title= titleText.getText().toString();
+							String text= textArea.getText().toString();
+							
+							ArrayList<String> titles= new ArrayList<String>();
+							ArrayList<String> content= new ArrayList<String>();
+							
+							titles= getArrayList(KEY1);
+							content= getArrayList(KEY2);
+							
+							titles.add(0,title);
+							content.add(0,text);
+							
+							saveArrayList(titles, KEY1);
+							saveArrayList(content, KEY2);
+							
+							Intent intent = new Intent(AddEdit.this, MainActivity.class);
+							startActivity(intent);
+						}
+						catch(Exception e){
+							AlertDialog.Builder alert= new AlertDialog.Builder(AddEdit.this);
+							alert.setMessage(e.getMessage());
+							alert.show();
+						}
 					}
 				});
 
     }
 		
 		public ArrayList<String> getArrayList(String key){
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME,0);
-        Gson gson = new Gson();
-        String json = prefs.getString(key, null);
-        Type type = new TypeToken<ArrayList<String>>() {}.getType();
-        return gson.fromJson(json, type);
+
+			SharedPreferences prefs = getSharedPreferences(PREFS_NAME,0);
+			Gson gson = new Gson();
+			String json = prefs.getString(key, null);
+			Type type = new TypeToken<ArrayList<String>>() {}.getType();
+			
+			if(gson.fromJson(json, type) != null){
+				return gson.fromJson(json, type);
+			}
+			else{
+				return new ArrayList<String>();
+			}
     }
 		
 		public void saveArrayList(ArrayList<String> list, String key){
@@ -91,7 +106,7 @@ public class AddEdit extends AppCompatActivity {
         Gson gson = new Gson();
         String json = gson.toJson(list);
         editor.putString(key, json);
-        editor.apply();     // This line is IMPORTANT !!!
+        editor.commit();     // This line is IMPORTANT !!!
     }
 		
 		@Override
@@ -107,8 +122,8 @@ public class AddEdit extends AppCompatActivity {
 
 		
 		@Override
-		public boolean onSupportNavigateUp(){  
-				finish();  
+		public boolean onSupportNavigateUp(){
+				finish();
 				return true;  
 		}
 	

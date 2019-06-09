@@ -72,11 +72,10 @@
 			<Button
 				android:layout_marginTop="30sp"
 				android:id="@+id/salvar"
-				android:layout_width="fill_parent"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:text="Salvar"
-				android:gravity="center|bottom"
-				android:layout_margin="13dp"/>
+				android:gravity="center|center_vertical"/>
 		</LinearLayout>
 		
 				

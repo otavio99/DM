@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+		>
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -23,7 +24,9 @@
         android:layout_marginTop="60sp"
         android:id="@+id/idList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" 
+				android:paddingLeft="10sp"
+				android:paddingRight="10sp"/>
   
 
 </android.support.design.widget.CoordinatorLayout>
