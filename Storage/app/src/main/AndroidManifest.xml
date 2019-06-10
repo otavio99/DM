@@ -21,7 +21,7 @@
         </activity>
 				
 				<activity
-            android:name=".AddEdit"
+            android:name=".ListaContatoActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
           
