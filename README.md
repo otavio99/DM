@@ -10,7 +10,7 @@ https://stackoverflow.com/questions/8846707/how-to-implement-a-long-click-listen
 
 ##Para a tarefa de storage
 
-https://www.baeldung.com/gson-save-file  // 
+https://www.baeldung.com/gson-save-file  //  
 https://java2blog.com/gson-example-read-and-write-json/  //  
 https://developer.android.com/training/data-storage/files
 
