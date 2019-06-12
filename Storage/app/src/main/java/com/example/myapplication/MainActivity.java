@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 							saveArrayList(TELEFONES, telefones);
 							saveArrayList(EMAILS, emails);
 							
-							Intent intent = new Intent(MainActivity.this, ListaContatoActivity.class);
+							Intent intent = new Intent(MainActivity.this, ContatoActivity.class);
 							startActivity(intent);
 						}
 						catch(Exception e){
